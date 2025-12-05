@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { MdLock } from "react-icons/md";
 import "../style/Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   const onsubmit =()=>{
     if(email === "admin@example.com" && password === '1234Password5678'){
-      window.location.href="/Dashboard"
+      navigate('/dashboard')
       setEmail('')
       setPassword('')
     }else{
@@ -25,7 +27,7 @@ function Login() {
         </p>
       </header>
       <main className="login__main">
-        <form className="login__form">
+        <form className="login__form" onSubmit={()=>onsubmit()}>
           <div className="login__input-group">
             <MdEmail className="login__icon" />
             <input
@@ -49,7 +51,7 @@ function Login() {
             />
           </div>
 
-          <button type="submit" onSubmit={()=>{onsubmit}} className="login__btn">
+          <button type="submit" className="login__btn">
             Login
           </button>
         </form>
